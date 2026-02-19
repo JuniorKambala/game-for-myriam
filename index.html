@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honey 💫</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Musique douce -->
+    <audio id="bgMusic" loop>
+        <source src="music/romantic.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Écran principal -->
+    <div class="container">
+
+        <h1 class="title">Honey…</h1>
+        <p class="subtitle">Même loin, je suis là 🤍</p>
+
+        <!-- Zone étoiles -->
+        <div class="stars-container">
+            <div class="star" onclick="showMessage()">⭐</div>
+            <div class="star" onclick="showMessage()">⭐</div>
+            <div class="star" onclick="showMessage()">⭐</div>
+            <div class="star" onclick="showMessage()">⭐</div>
+            <div class="star" onclick="showMessage()">⭐</div>
+        </div>
+
+        <!-- Carte message -->
+        <div id="messageBox" class="message-box hidden">
+            <p id="messageText"></p>
+            <button onclick="closeMessage()">Encore…</button>
+        </div>
+
+        <!-- Conteneur cœurs -->
+        <div id="hearts-container"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
