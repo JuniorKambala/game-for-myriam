@@ -130,3 +130,36 @@ body::before {
     left: 0;
     z-index: 1;
 }
+
+.hint {
+    margin-top: -20px;
+    margin-bottom: 40px;
+    font-size: 15px;
+    color: #8e2157;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+@keyframes fadeHint {
+    0% { opacity: 0; }
+    30% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.star {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 3px #ff4da6);
+        transform: scale(1);
+    }
+    to {
+        filter: drop-shadow(0 0 12px #ff99cc);
+        transform: scale(1.1);
+    }
+}

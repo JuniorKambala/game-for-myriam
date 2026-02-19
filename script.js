@@ -1,7 +1,5 @@
-// 🎵 Musique
 const music = document.getElementById("bgMusic");
 
-// 💌 Messages pour Honey
 const messages = [
 "Honey… même loin, je sens ton cœur battre avec le mien.",
 "Si je pouvais traverser l’écran, je te prendrais dans mes bras.",
@@ -23,36 +21,45 @@ const messages = [
 const messageBox = document.getElementById("messageBox");
 const messageText = document.getElementById("messageText");
 const heartsContainer = document.getElementById("hearts-container");
+const hint = document.getElementById("hint");
 
 let musicStarted = false;
+let hintTimeout;
 
-// ⭐ Quand on clique sur une étoile
+// Fonction quand on clique sur étoile
 function showMessage() {
 
-    // 🎵 Lancer musique au premier clic
+    // Lancer musique une seule fois
     if (!musicStarted) {
-        music.play();
+        music.play().catch(() => {});
         musicStarted = true;
     }
 
-    // 💌 Message aléatoire
+    // Cacher le message "Touche une étoile"
+    hint.style.opacity = "0";
+
+    // Message romantique aléatoire
     const randomIndex = Math.floor(Math.random() * messages.length);
     messageText.textContent = messages[randomIndex];
 
     messageBox.classList.remove("hidden");
 
-    // 💖 Créer cœurs animés
     createHearts();
+
+    // Après 6 secondes, cacher message romantique
+    setTimeout(() => {
+        messageBox.classList.add("hidden");
+
+        // Si elle ne touche plus rien pendant 4 secondes → remettre le hint
+        hintTimeout = setTimeout(() => {
+            hint.style.opacity = "1";
+        }, 4000);
+
+    }, 6000);
 }
 
-// Fermer message
-function closeMessage() {
-    messageBox.classList.add("hidden");
-}
-
-// 💖 Animation des cœurs
+// Animation des cœurs
 function createHearts() {
-
     for (let i = 0; i < 15; i++) {
 
         const heart = document.createElement("div");
