@@ -155,5 +155,9 @@ enterBtn.addEventListener("click", () => {
     setTimeout(() => {
         intro.style.display = "none";
         container.style.display = "block";
+
+    setTimeout(() => {
+        container.style.opacity = "1";
+    }, 100);
     }, 1500);
 });
