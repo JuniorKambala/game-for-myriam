@@ -2,20 +2,50 @@ const music = document.getElementById("bgMusic");
 
 const messages = [
 "Honey… même loin, je sens ton cœur battre avec le mien.",
-"Si je pouvais traverser l’écran, je te prendrais dans mes bras.",
-"Ta force m’inspire chaque jour.",
-"Même pendant tes moments difficiles, tu restes la plus belle chose de ma vie.",
-"Repose-toi mon amour… je suis ton calme.",
-"Ton sourire vaut toutes les distances du monde.",
-"Je suis fier de toi, plus que tu ne l’imagines.",
-"Chaque jour loin de toi est un jour de plus vers nos retrouvailles.",
+"Tu es la paix que je cherche après chaque journée.",
+"Repose-toi mon amour, ton corps mérite toute la tendresse.",
+"Même dans le silence, mon amour pour toi parle fort.",
+"Tu rends mes journées plus légères.",
+"La distance mesure les kilomètres, pas l’intensité.",
 "Je t’aime dans tes jours forts et encore plus dans tes jours fragiles.",
-"Si la douleur te fatigue, laisse-moi porter ton cœur un instant.",
+"Tu es ma douceur dans un monde parfois dur.",
+"Respire doucement… je suis avec toi.",
+"Je pense à toi plus souvent que tu ne l’imagines.",
+"Même fatiguée, tu restes magnifique à mes yeux.",
+"Je veux être ton refuge, pas seulement ton amoureux.",
+"Prends ton temps, je reste à tes côtés.",
 "Tu es mon endroit sûr.",
-"Je suis jaloux de ton oreiller… il a plus de câlins que moi.",
+"Chaque étoile ce soir me rappelle toi.",
+"Tu n’as pas besoin d’être forte tout le temps.",
+"Je te choisis. Chaque jour. Même loin.",
+"Je suis fier de toi, plus que tu ne l’imagines.",
+"Avec toi, même la distance devient poésie.",
+"Si la douleur te fatigue, laisse-moi porter ton cœur un instant.",
+"Je suis reconnaissant de t’avoir.",
+"Si mon cœur avait une adresse, ce serait toi.",
+"Même dans tes jours gris, tu es ma couleur préférée.",
+"Je voudrais te tenir la main jusqu’à ce que ça aille mieux.",
+"Ton sourire vaut toutes les distances du monde.",
+"Je suis là pour toi, même quand tu te sens fragile.",
+"Je t’aime aussi dans tes silences.",
+"Tu es la plus belle chose de ma vie.",
+"Mon cœur te reconnaît toujours.",
+"Ta sensibilité est une force, pas une faiblesse.",
+"Je veux construire des souvenirs avec toi.",
+"Chaque jour loin de toi est un jour de plus vers nos retrouvailles.",
+"Je t’aime dans les petits détails.",
 "Même les étoiles ne brillent pas autant que toi.",
+"Je voudrais être la chaleur qui te réconforte.",
+"Je pense à toi avant même que ma journée commence.",
+"Tu es mon calme quand tout bouge autour.",
+"Je veux que tu te sentes aimée, même à distance.",
 "Ferme les yeux… imagine mes bras autour de toi.",
-"Honey, je t’aime. Profondément. Doucement. Pour longtemps."
+"Je t’aime profondément. Doucement. Pour longtemps.",
+"Tu es plus forte que tu ne le crois.",
+"Si je pouvais, je t’enverrais un câlin à travers l’écran.",
+"Je veux être celui qui t’apaise.",
+"Même loin, je me sens proche de toi.",
+"Je t’aime pour ce que tu es, et pour tout ce que tu deviendras."
 ];
 
 const messageBox = document.getElementById("messageBox");
@@ -86,7 +116,7 @@ function createHearts() {
     for (let i = 0; i < 15; i++) {
 
         const heart = document.createElement("div");
-        heart.innerHTML = "💗";
+        heart.innerHTML = "💖";
 
         heart.style.position = "absolute";
         heart.style.left = Math.random() * 100 + "vw";
@@ -170,4 +200,11 @@ enterBtn.addEventListener("click", () => {
         }, 100);
 
     }, 1500);
+});
+
+// 🎵 Arrêter la musique si l'utilisateur quitte la page
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        music.pause();
+    }
 });
