@@ -29,7 +29,7 @@ let messageTimeout;
 let hintTimeout;
 
 function showMessage() {
-    
+
     // 💓 Vibration tactile (mobile)
     if (navigator.vibrate) {
         navigator.vibrate(40);
@@ -88,7 +88,7 @@ function createHearts() {
         heart.style.position = "absolute";
         heart.style.left = Math.random() * 100 + "vw";
         heart.style.bottom = "0";
-        heart.style.fontSize = Math.random() * 20 + 15 + "px";
+        heart.style.fontSize = (Math.random() * 15 + 18) + "px";
         heart.style.animation = "floatUp 3s linear forwards";
 
         heartsContainer.appendChild(heart);
@@ -104,7 +104,9 @@ function generateBackgroundStars() {
 
     const bg = document.querySelector(".background-stars");
 
-    for (let i = 0; i < 100; i++) {
+    let starCount = window.innerWidth < 768 ? 60 : 100;
+
+    for (let i = 0; i < starCount; i++) {
 
         const star = document.createElement("div");
         star.classList.add("star-bg");
