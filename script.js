@@ -29,6 +29,11 @@ let messageTimeout;
 let hintTimeout;
 
 function showMessage() {
+    
+    // 💓 Vibration tactile (mobile)
+    if (navigator.vibrate) {
+        navigator.vibrate(40);
+    }
 
     // 🚫 Bloquer si message déjà actif
     if (isMessageActive) return;
