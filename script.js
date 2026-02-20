@@ -202,7 +202,7 @@ enterBtn.addEventListener("click", () => {
     }, 1500);
 });
 
-// 🎵 Arrêter la musique si l'utilisateur quitte la page
+// 🎵 Arrêter la musique si l'utilisateur quitte la page et que la musique reprenne quand il revient
 document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
         music.pause();
