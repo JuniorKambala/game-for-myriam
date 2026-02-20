@@ -24,21 +24,31 @@ const heartsContainer = document.getElementById("hearts-container");
 const hint = document.getElementById("hint");
 
 let musicStarted = false;
+let isMessageActive = false;
+let messageTimeout;
 let hintTimeout;
 
-// Fonction quand on clique sur étoile
 function showMessage() {
 
-    // Lancer musique une seule fois
+    // 🚫 Bloquer si message déjà actif
+    if (isMessageActive) return;
+
+    isMessageActive = true;
+
+    clearTimeout(messageTimeout);
+    clearTimeout(hintTimeout);
+
+    // 🎵 Musique
     if (!musicStarted) {
+        music.volume = 0.5;
         music.play().catch(() => {});
         musicStarted = true;
     }
 
-    // Cacher le message "Touche une étoile"
+    // Cacher hint
     hint.style.opacity = "0";
 
-    // Message romantique aléatoire
+    // Message aléatoire
     const randomIndex = Math.floor(Math.random() * messages.length);
     messageText.textContent = messages[randomIndex];
 
@@ -46,20 +56,26 @@ function showMessage() {
 
     createHearts();
 
-    // Après 6 secondes, cacher message romantique
-    setTimeout(() => {
-        messageBox.classList.add("hidden");
+    // Disparition message
+    messageTimeout = setTimeout(() => {
 
-        // Si elle ne touche plus rien pendant 4 secondes → remettre le hint
+        messageBox.classList.add("hidden");
+        isMessageActive = false;
+
+        // Réafficher hint après 4 sec si aucun clic
         hintTimeout = setTimeout(() => {
-            hint.style.opacity = "1";
+            if (!isMessageActive) {
+                hint.style.opacity = "1";
+            }
         }, 4000);
 
     }, 6000);
 }
 
-// Animation des cœurs
 function createHearts() {
+
+    heartsContainer.innerHTML = ""; // Nettoyage propre
+
     for (let i = 0; i < 15; i++) {
 
         const heart = document.createElement("div");
