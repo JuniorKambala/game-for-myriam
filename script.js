@@ -93,3 +93,24 @@ function createHearts() {
         }, 3000);
     }
 }
+
+// 🌌 Génération étoiles arrière-plan
+function generateBackgroundStars() {
+
+    const bg = document.querySelector(".background-stars");
+
+    for (let i = 0; i < 100; i++) {
+
+        const star = document.createElement("div");
+        star.classList.add("star-bg");
+
+        star.style.top = Math.random() * 100 + "vh";
+        star.style.left = Math.random() * 100 + "vw";
+
+        star.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+        bg.appendChild(star);
+    }
+}
+
+generateBackgroundStars();
