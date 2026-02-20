@@ -51,12 +51,7 @@ function showMessage() {
     clearTimeout(hintTimeout);
 
     // 🎵 Musique
-    if (!musicStarted) {
-        music.volume = 0.5;
-        music.play().catch(() => {});
-        musicStarted = true;
-    }
-
+    
     // Cacher hint
     hint.style.opacity = "0";
 
@@ -144,11 +139,25 @@ const container = document.querySelector(".container");
 
 enterBtn.addEventListener("click", () => {
 
-    // Petit effet tactile
+    // Effet tactile léger
     document.body.style.transform = "scale(0.98)";
     setTimeout(() => {
         document.body.style.transform = "scale(1)";
     }, 120);
+
+    // 🎵 Lancer musique avec fade-in
+    music.volume = 0;
+    music.play().catch(() => {});
+
+    let volume = 0;
+    const fadeIn = setInterval(() => {
+        if (volume < 0.5) {
+            volume += 0.02;
+            music.volume = volume;
+        } else {
+            clearInterval(fadeIn);
+        }
+    }, 200);
 
     intro.style.opacity = "0";
 
@@ -156,8 +165,9 @@ enterBtn.addEventListener("click", () => {
         intro.style.display = "none";
         container.style.display = "block";
 
-    setTimeout(() => {
-        container.style.opacity = "1";
-    }, 100);
+        setTimeout(() => {
+            container.style.opacity = "1";
+        }, 100);
+
     }, 1500);
 });
