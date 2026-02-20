@@ -36,6 +36,10 @@ body::before {
 
 /* Container */
 .container {
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+    z-index: 2;
     opacity: 0;
     transition: opacity 2s ease;
 }
