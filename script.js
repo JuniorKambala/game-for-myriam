@@ -35,6 +35,13 @@ function showMessage() {
         navigator.vibrate(40);
     }
 
+    // Effet tactile visuel pour iPhone
+    document.body.style.transform = "scale(0.995)";
+    setTimeout(() => {
+        document.body.style.transform = "scale(1)";
+    }, 100);
+    
+
     // 🚫 Bloquer si message déjà actif
     if (isMessageActive) return;
 
@@ -79,20 +86,29 @@ function showMessage() {
 
 function createHearts() {
 
-    heartsContainer.innerHTML = ""; // Nettoyage propre
+    heartsContainer.innerHTML = "";
 
     for (let i = 0; i < 15; i++) {
 
         const heart = document.createElement("div");
         heart.innerHTML = "💗";
+
         heart.style.position = "absolute";
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.bottom = "0";
+        heart.style.bottom = "0px";
         heart.style.fontSize = (Math.random() * 15 + 18) + "px";
-        heart.style.animation = "floatUp 3s linear forwards";
+        heart.style.opacity = "1";
+        heart.style.transition = "transform 3s linear, opacity 3s linear";
 
         heartsContainer.appendChild(heart);
 
+        // Lancer animation après insertion
+        setTimeout(() => {
+            heart.style.transform = "translateY(-120vh)";
+            heart.style.opacity = "0";
+        }, 50);
+
+        // Supprimer après animation
         setTimeout(() => {
             heart.remove();
         }, 3000);
