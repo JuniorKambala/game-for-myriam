@@ -40,7 +40,7 @@ function showMessage() {
     setTimeout(() => {
         document.body.style.transform = "scale(1)";
     }, 100);
-    
+
 
     // 🚫 Bloquer si message déjà actif
     if (isMessageActive) return;
@@ -137,3 +137,23 @@ function generateBackgroundStars() {
 }
 
 generateBackgroundStars();
+
+const intro = document.getElementById("intro");
+const enterBtn = document.getElementById("enterBtn");
+const container = document.querySelector(".container");
+
+enterBtn.addEventListener("click", () => {
+
+    // Petit effet tactile
+    document.body.style.transform = "scale(0.98)";
+    setTimeout(() => {
+        document.body.style.transform = "scale(1)";
+    }, 120);
+
+    intro.style.opacity = "0";
+
+    setTimeout(() => {
+        intro.style.display = "none";
+        container.style.display = "block";
+    }, 1500);
+});
