@@ -202,9 +202,26 @@ enterBtn.addEventListener("click", () => {
     }, 1500);
 });
 
-// 🎵 Arrêter la musique si l'utilisateur quitte la page et que la musique reprenne quand il revient
+
+let wasPlaying = false;
+
 document.addEventListener("visibilitychange", () => {
+
     if (document.hidden) {
+
+        // Sauvegarder si la musique jouait
+        wasPlaying = !music.paused;
         music.pause();
+
+    } else {
+
+        // Si elle jouait avant, on reprend
+        if (wasPlaying) {
+            setTimeout(() => {
+                music.play().catch(() => {});
+            }, 300);
+        }
+
     }
+
 });
