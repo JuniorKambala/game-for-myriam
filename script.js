@@ -279,6 +279,7 @@ function showSpecialMessage() {
 
     // ✅ Activation autorisée
     lastSpecialUsed = now;
+    localStorage.setItem("lastSpecialUsed", lastSpecialUsed);
     specialStarReady = false;
     normalClickCount = 0;
 
