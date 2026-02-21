@@ -225,3 +225,34 @@ document.addEventListener("visibilitychange", () => {
     }
 
 });
+
+function showSpecialMessage() {
+
+    if (isMessageActive) return;
+
+    isMessageActive = true;
+
+    clearTimeout(messageTimeout);
+    clearTimeout(hintTimeout);
+
+    hint.style.opacity = "0";
+
+    messageText.textContent = "Honey… si tu lis ceci, c’est que tu as découvert mon étoile secrète. Même dans un ciel rempli d’étoiles… tu restes la plus précieuse à mes yeux.";
+
+    messageBox.classList.remove("hidden");
+
+    createHearts();
+
+    messageTimeout = setTimeout(() => {
+
+        messageBox.classList.add("hidden");
+        isMessageActive = false;
+
+        hintTimeout = setTimeout(() => {
+            if (!isMessageActive) {
+                hint.style.opacity = "1";
+            }
+        }, 4000);
+
+    }, 7000);
+}
