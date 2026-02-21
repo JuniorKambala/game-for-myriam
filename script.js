@@ -255,4 +255,8 @@ function showSpecialMessage() {
         }, 4000);
 
     }, 7000);
+
+    if (navigator.vibrate) {
+    navigator.vibrate([50, 30, 50]);
+}
 }
