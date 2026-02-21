@@ -275,17 +275,29 @@ function showSpecialMessage() {
     // ⏳ En recharge
     if (now - lastSpecialUsed < specialCooldown) {
 
-        const remaining = Math.ceil((specialCooldown - (now - lastSpecialUsed)) / 60000);
+        const elapsed = now - lastSpecialUsed;
+        const remainingMs = specialCooldown - elapsed;
+        const remainingMinutes = Math.ceil(remainingMs / 60000);
+
+        const progress = elapsed / specialCooldown;
 
         let rechargeMessage = "";
 
-        if (remaining > 1) {
-            rechargeMessage =
-            "Cette étoile conserve quelque chose de précieux… elle brillera à nouveau dans environ " + remaining + " minutes";
-        } else {
-            rechargeMessage =
-            "Cette étoile est presque prête à révéler son secret… encore un petit instant";
+        if (progress < 0.25) {
+            rechargeMessage = "Elle se recharge doucement… ✨";
         }
+        else if (progress < 0.5) {
+            rechargeMessage = "Elle retrouve peu à peu son éclat… ✨";
+        }
+        else if (progress < 0.75) {
+            rechargeMessage = "Son secret recommence à briller… ✨";
+        }
+        else {
+            rechargeMessage = "Elle est presque prête… encore un souffle d’étoile ✨";
+        }
+
+        // Ajout subtil du temps restant
+        rechargeMessage += " (≈ " + remainingMinutes + " min)";
 
         messageText.textContent = rechargeMessage;
 
