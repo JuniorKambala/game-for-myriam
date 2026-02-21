@@ -56,6 +56,12 @@ const secretOverlay = document.getElementById("secretOverlay");
 const secretEnvelope = document.getElementById("secretEnvelope");
 const paperSound = document.getElementById("paperSound");
 
+// Système étoile spéciale intelligente
+let normalClickCount = 0;
+let specialStarReady = false;
+let lastSpecialUsed = 0;
+const specialCooldown = 10 * 60 * 1000; // 10 minutes
+
 let musicStarted = false;
 let isMessageActive = false;
 let messageTimeout;
