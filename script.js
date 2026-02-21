@@ -55,6 +55,7 @@ const hint = document.getElementById("hint");
 const secretOverlay = document.getElementById("secretOverlay");
 const secretEnvelope = document.getElementById("secretEnvelope");
 const paperSound = document.getElementById("paperSound");
+const specialStar = document.querySelector(".special-star");
 
 // Système étoile spéciale intelligente
 let normalClickCount = 0;
@@ -313,6 +314,7 @@ function showSpecialMessage() {
     // ✅ Activation autorisée
     lastSpecialUsed = now;
     localStorage.setItem("lastSpecialUsed", lastSpecialUsed);
+    updateSpecialStarVisual();
     specialStarReady = false;
     normalClickCount = 0;
 
@@ -386,3 +388,43 @@ if (secretEnvelope) {
 }, 700);
 });
 }
+
+function updateSpecialStarVisual() {
+
+    if (!specialStar) return;
+
+    specialStar.classList.remove(
+        "star-charging-low",
+        "star-charging-mid",
+        "star-charging-high",
+        "star-ready"
+    );
+
+    const now = Date.now();
+    const elapsed = now - lastSpecialUsed;
+
+    if (!specialStarReady) {
+        specialStar.classList.add("star-charging-low");
+        return;
+    }
+
+    if (elapsed >= specialCooldown) {
+        specialStar.classList.add("star-ready");
+        return;
+    }
+
+    const progress = elapsed / specialCooldown;
+
+    if (progress < 0.33) {
+        specialStar.classList.add("star-charging-low");
+    }
+    else if (progress < 0.66) {
+        specialStar.classList.add("star-charging-mid");
+    }
+    else {
+        specialStar.classList.add("star-charging-high");
+    }
+}
+
+setInterval(updateSpecialStarVisual, 3000);
+updateSpecialStarVisual();
