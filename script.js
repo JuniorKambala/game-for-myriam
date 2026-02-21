@@ -255,10 +255,10 @@ function showSpecialMessage() {
 
     if (remainingUnlock > 1) {
         unlockMessage =
-        "Encore " + remainingUnlock + " étoiles à illuminer avant que celle-ci révèle son secret ✨";
+        "Encore " + remainingUnlock + " étoiles à illuminer avant que celle-ci révèle son secret";
     } else {
         unlockMessage =
-        "Encore une étoile… et celle-ci brillera pour toi ✨";
+        "Encore une étoile… et celle-ci brillera pour toi 💗";
     }
 
     messageText.textContent = unlockMessage;
@@ -281,10 +281,10 @@ function showSpecialMessage() {
 
         if (remaining > 1) {
             rechargeMessage =
-            "Cette étoile conserve quelque chose de précieux… elle brillera à nouveau dans environ " + remaining + " minutes ✨";
+            "Cette étoile conserve quelque chose de précieux… elle brillera à nouveau dans environ " + remaining + " minutes";
         } else {
             rechargeMessage =
-            "Cette étoile est presque prête à révéler son secret… encore un petit instant ✨";
+            "Cette étoile est presque prête à révéler son secret… encore un petit instant";
         }
 
         messageText.textContent = rechargeMessage;
