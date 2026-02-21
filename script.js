@@ -84,6 +84,12 @@ function showMessage() {
     // 🚫 Bloquer si message déjà actif
     if (isMessageActive) return;
 
+    normalClickCount++;
+
+    if (normalClickCount >= 3) {
+        specialStarReady = true;
+    }
+
     isMessageActive = true;
 
     clearTimeout(messageTimeout);
