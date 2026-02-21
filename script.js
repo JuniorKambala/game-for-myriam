@@ -59,7 +59,7 @@ const paperSound = document.getElementById("paperSound");
 // Système étoile spéciale intelligente
 let normalClickCount = 0;
 let specialStarReady = false;
-let lastSpecialUsed = 0;
+let lastSpecialUsed = parseInt(localStorage.getItem("lastSpecialUsed")) || 0;
 const specialCooldown = 10 * 60 * 1000; // 10 minutes
 
 let musicStarted = false;
