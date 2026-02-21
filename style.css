@@ -270,3 +270,18 @@ body {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+.special-star {
+    animation: glowSpecial 2s infinite alternate;
+}
+
+@keyframes glowSpecial {
+    from {
+        filter: drop-shadow(0 0 5px gold);
+        transform: scale(1);
+    }
+    to {
+        filter: drop-shadow(0 0 18px #ffd700);
+        transform: scale(1.2);
+    }
+}
