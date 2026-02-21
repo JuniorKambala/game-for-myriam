@@ -172,7 +172,7 @@ const enterBtn = document.getElementById("enterBtn");
 const container = document.querySelector(".container");
 
 enterBtn.addEventListener("click", () => {
-
+    //console.log("CLICK INTRO");
     // Effet tactile léger
     document.body.style.transform = "scale(0.98)";
     setTimeout(() => {
@@ -243,7 +243,8 @@ function showSpecialMessage() {
     }, 10);
 }
 
-secretEnvelope.addEventListener("click", () => {
+if (secretEnvelope) {
+    secretEnvelope.addEventListener("click", () => {
 
     secretEnvelope.classList.add("open");
 
@@ -270,4 +271,4 @@ secretEnvelope.addEventListener("click", () => {
     }, 700);
 
 });
-
+}
