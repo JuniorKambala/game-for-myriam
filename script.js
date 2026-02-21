@@ -244,14 +244,53 @@ document.addEventListener("visibilitychange", () => {
 
 function showSpecialMessage() {
 
+    const now = Date.now();
+
+    // 🔒 Pas encore débloquée (moins de 3 clics normaux)
+    if (!specialStarReady) {
+
+        messageText.textContent = "Cette étoile attend encore un peu… ✨";
+
+        messageBox.classList.remove("hidden");
+
+        setTimeout(() => {
+            messageBox.classList.add("hidden");
+        }, 3000);
+
+        return;
+    }
+
+    // ⏳ En recharge
+    if (now - lastSpecialUsed < specialCooldown) {
+
+        const remaining = Math.ceil((specialCooldown - (now - lastSpecialUsed)) / 60000);
+
+        messageText.textContent =
+        "Cette étoile se recharge doucement… encore " + remaining + " minute(s) ✨";
+
+        messageBox.classList.remove("hidden");
+
+        setTimeout(() => {
+            messageBox.classList.add("hidden");
+        }, 4000);
+
+        return;
+    }
+
+    // ✅ Activation autorisée
+    lastSpecialUsed = now;
+    specialStarReady = false;
+    normalClickCount = 0;
+
     if (isMessageActive) return;
 
     isMessageActive = true;
     hint.style.opacity = "0";
 
+    // Afficher overlay
     secretOverlay.classList.remove("hidden");
     setTimeout(() => {
-    secretOverlay.classList.add("active");
+        secretOverlay.classList.add("active");
     }, 10);
 }
 
@@ -266,8 +305,24 @@ if (secretEnvelope) {
 
     setTimeout(() => {
 
-        messageText.textContent =
-        "Honey… tu viens d’ouvrir le message le plus précieux. Même dans un ciel rempli d’étoiles, c’est toi que mon cœur choisit.";
+        
+        const hour = new Date().getHours();
+        let specialMessage = "";
+
+        if (hour >= 6 && hour < 11) {
+            specialMessage = "Que ta journée soit douce, baby. Je pense à toi dès le matin.";
+        } 
+        else if (hour >= 11 && hour < 18) {
+            specialMessage = "Au milieu de ta journée, rappelle-toi que quelqu’un t’aime profondément.";
+        } 
+        else if (hour >= 18 && hour < 22) {
+            specialMessage = "Si ta journée a été longue… laisse-moi être ton calme ce soir.";
+        } 
+        else {
+            specialMessage = "Si tu lis ceci tard… j’espère que tu t’endors en pensant à nous.";
+        }
+
+        messageText.textContent = specialMessage;
 
         messageBox.classList.remove("hidden");
         createHearts("special");
