@@ -109,14 +109,14 @@ function showMessage() {
     }, 6000);
 }
 
-function createHearts() {
+function createHearts(type = "normal") {
 
     heartsContainer.innerHTML = "";
 
     for (let i = 0; i < 15; i++) {
 
         const heart = document.createElement("div");
-        heart.innerHTML = "💖";
+        heart.innerHTML = type === "special" ? "💖" : "💗";
 
         heart.style.position = "absolute";
         heart.style.left = Math.random() * 100 + "vw";
@@ -241,7 +241,7 @@ function showSpecialMessage() {
 
     messageBox.classList.remove("hidden");
 
-    createHearts();
+    createHearts("special");
 
     messageTimeout = setTimeout(() => {
 
