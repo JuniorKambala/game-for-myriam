@@ -239,3 +239,34 @@ function showSpecialMessage() {
     secretCard.classList.remove("hidden");
 
 }
+
+secretCard.addEventListener("click", () => {
+
+    secretCard.style.opacity = "0";
+
+    setTimeout(() => {
+        secretCard.classList.add("hidden");
+        secretCard.style.opacity = "1";
+
+        messageText.textContent = "Honey… tu viens d’ouvrir mon message le plus précieux. Même dans un ciel rempli d’étoiles, c’est toi que mon cœur choisit.";
+
+        messageBox.classList.remove("hidden");
+
+        createHearts("special");
+
+        setTimeout(() => {
+
+            messageBox.classList.add("hidden");
+            isMessageActive = false;
+
+            hintTimeout = setTimeout(() => {
+                if (!isMessageActive) {
+                    hint.style.opacity = "1";
+                }
+            }, 4000);
+
+        }, 7000);
+
+    }, 500);
+
+});
