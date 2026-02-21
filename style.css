@@ -285,3 +285,38 @@ body {
         transform: scale(1.2);
     }
 }
+
+.secret-card {
+    position: fixed;
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 90px;
+    height: 90px;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+
+    animation: floatCard 2s ease-in-out infinite alternate,
+               glowCard 1.5s infinite alternate;
+
+    transition: transform 0.3s ease, opacity 0.5s ease;
+}
+
+@keyframes floatCard {
+    from { transform: translateY(0); }
+    to { transform: translateY(-15px); }
+}
+
+@keyframes glowCard {
+    from { filter: drop-shadow(0 0 5px #ff99cc); }
+    to { filter: drop-shadow(0 0 20px #ffd700); }
+}
+
+.secret-card:hover {
+    transform: scale(1.2);
+}
