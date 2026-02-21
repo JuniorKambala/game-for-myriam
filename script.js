@@ -285,16 +285,16 @@ function showSpecialMessage() {
         let rechargeMessage = "";
 
         if (progress < 0.25) {
-            rechargeMessage = "Cette étoile rassemble doucement son énergie… ";
+            rechargeMessage = "Cette étoile rassemble doucement son énergie… Patiente !";
         }
         else if (progress < 0.5) {
             rechargeMessage = "Son éclat revient peu à peu, avec patience… ";
         }
         else if (progress < 0.75) {
-            rechargeMessage = "Son secret recommence à murmurer doucement… Bientôt elle brille ";
+            rechargeMessage = "Son secret recommence à murmurer doucement… Bientôt elle brille ! ";
         }
         else {
-            rechargeMessage = "Elle est presque prête à briller pour toi… encore un instant ";
+            rechargeMessage = "Elle est presque prête à briller pour toi… encore un instant ! ";
         }
 
         // Ajout subtil du temps restant
