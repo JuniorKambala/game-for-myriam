@@ -45,8 +45,15 @@
     </div>
 
     <script src="script.js"></script>
-    <div id="secretCard" class="secret-card hidden">
-    💌
+    
+    <!-- Overlay carte secrète -->
+    <div id="secretOverlay" class="secret-overlay hidden">
+        <div id="secretEnvelope" class="secret-envelope">
+            <div class="flap"></div>
+            <div class="letter">💌</div>
+        </div>
     </div>
+
+<audio id="paperSound" src="music/paper.mp3" preload="auto"></audio>
 </body>
 </html>

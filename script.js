@@ -1,4 +1,3 @@
-const secretCard = document.getElementById("secretCard");
 const music = document.getElementById("bgMusic");
 
 const messages = [
@@ -53,6 +52,9 @@ const messageBox = document.getElementById("messageBox");
 const messageText = document.getElementById("messageText");
 const heartsContainer = document.getElementById("hearts-container");
 const hint = document.getElementById("hint");
+const secretOverlay = document.getElementById("secretOverlay");
+const secretEnvelope = document.getElementById("secretEnvelope");
+const paperSound = document.getElementById("paperSound");
 
 let musicStarted = false;
 let isMessageActive = false;
@@ -119,6 +121,7 @@ function createHearts(type = "normal") {
         const heart = document.createElement("div");
         heart.innerHTML = type === "special" ? "💖" : "💗";
 
+        heart.style.filter = "drop-shadow(0 0 8px gold)";
         heart.style.position = "absolute";
         heart.style.left = Math.random() * 100 + "vw";
         heart.style.bottom = "0px";
@@ -232,41 +235,39 @@ function showSpecialMessage() {
     if (isMessageActive) return;
 
     isMessageActive = true;
-
     hint.style.opacity = "0";
 
-    // Afficher la carte
-    secretCard.classList.remove("hidden");
-
+    secretOverlay.classList.remove("hidden");
+    setTimeout(() => {
+    secretOverlay.classList.add("active");
+    }, 10);
 }
 
-secretCard.addEventListener("click", () => {
+secretEnvelope.addEventListener("click", () => {
 
-    secretCard.style.opacity = "0";
+    secretEnvelope.classList.add("open");
+
+    if (paperSound) {
+        paperSound.play().catch(()=>{});
+    }
 
     setTimeout(() => {
-        secretCard.classList.add("hidden");
-        secretCard.style.opacity = "1";
 
-        messageText.textContent = "Honey… tu viens d’ouvrir mon message le plus précieux. Même dans un ciel rempli d’étoiles, c’est toi que mon cœur choisit.";
+        messageText.textContent =
+        "Honey… tu viens d’ouvrir le message le plus précieux. Même dans un ciel rempli d’étoiles, c’est toi que mon cœur choisit.";
 
         messageBox.classList.remove("hidden");
-
         createHearts("special");
 
+        secretOverlay.classList.remove("active");
+
         setTimeout(() => {
-
-            messageBox.classList.add("hidden");
+            secretOverlay.classList.add("hidden");
+            secretEnvelope.classList.remove("open");
             isMessageActive = false;
+        }, 600);
 
-            hintTimeout = setTimeout(() => {
-                if (!isMessageActive) {
-                    hint.style.opacity = "1";
-                }
-            }, 4000);
-
-        }, 7000);
-
-    }, 500);
+    }, 700);
 
 });
+
