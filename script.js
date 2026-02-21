@@ -249,15 +249,27 @@ function showSpecialMessage() {
     // 🔒 Pas encore débloquée (moins de 3 clics normaux)
     if (!specialStarReady) {
 
-        messageText.textContent = "Cette étoile attend encore un peu… ✨";
+        const remainingUnlock = 3 - normalClickCount;
 
-        messageBox.classList.remove("hidden");
+        let unlockMessage = "";
 
-        setTimeout(() => {
-            messageBox.classList.add("hidden");
-        }, 3000);
+    if (remainingUnlock > 1) {
+        unlockMessage =
+        "Encore " + remainingUnlock + " étoiles à illuminer avant que celle-ci révèle son secret ✨";
+    } else {
+        unlockMessage =
+        "Encore une étoile… et celle-ci brillera pour toi ✨";
+    }
 
-        return;
+    messageText.textContent = unlockMessage;
+
+    messageBox.classList.remove("hidden");
+
+    setTimeout(() => {
+        messageBox.classList.add("hidden");
+    }, 3500);
+
+    return;
     }
 
     // ⏳ En recharge
@@ -265,8 +277,17 @@ function showSpecialMessage() {
 
         const remaining = Math.ceil((specialCooldown - (now - lastSpecialUsed)) / 60000);
 
-        messageText.textContent =
-        "Cette étoile se recharge doucement… encore " + remaining + " minute(s) ✨";
+        let rechargeMessage = "";
+
+        if (remaining > 1) {
+            rechargeMessage =
+            "Cette étoile conserve quelque chose de précieux… elle brillera à nouveau dans environ " + remaining + " minutes ✨";
+        } else {
+            rechargeMessage =
+            "Cette étoile est presque prête à révéler son secret… encore un petit instant ✨";
+        }
+
+        messageText.textContent = rechargeMessage;
 
         messageBox.classList.remove("hidden");
 
