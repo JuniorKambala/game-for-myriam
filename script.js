@@ -260,15 +260,28 @@ if (secretEnvelope) {
         messageBox.classList.remove("hidden");
         createHearts("special");
 
-        secretOverlay.classList.remove("active");
+        // ➜ DISPARITION AUTOMATIQUE (comme les autres étoiles)
+        messageTimeout = setTimeout(() => {
 
-        setTimeout(() => {
-            secretOverlay.classList.add("hidden");
-            secretEnvelope.classList.remove("open");
-            isMessageActive = false;
-        }, 600);
+        messageBox.classList.add("hidden");
+        isMessageActive = false;
 
-    }, 700);
+        hintTimeout = setTimeout(() => {
+            if (!isMessageActive) {
+                hint.style.opacity = "1";
+            }
+        }, 4000);
 
+    }, 7000);
+
+    // Fermer overlay
+    secretOverlay.classList.remove("active");
+
+    setTimeout(() => {
+        secretOverlay.classList.add("hidden");
+        secretEnvelope.classList.remove("open");
+    }, 600);
+
+}, 700);
 });
 }
